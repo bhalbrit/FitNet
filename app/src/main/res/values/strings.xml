@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FitNet</string>
+    <string name="title_trainingsplan_detail">Trainingsplan Detail</string>
+    <string name="fehler_alle_felder_asfuellen">Bitte alle felder ausfüllen!</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_trainingsplan_erstellen">Trainingsplan_erstellen</string>
+</resources>

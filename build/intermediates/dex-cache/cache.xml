@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\20614358cbd147017de4c8554583fef69c013164\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_2e97ec19ca41a672ff453f3b42e9b2a465c611f8.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\2ead4b3fe853be190ca63a620fc19fafd4788eda\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2817fdbfcb9bc970f585ce7d31224e35af5f2038\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\948412fe75189d435feaad21018498e3933486da\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_06cec914ee6c6c28364a31be27533d88dd041059.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\20614358cbd147017de4c8554583fef69c013164\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2e97ec19ca41a672ff453f3b42e9b2a465c611f8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\948412fe75189d435feaad21018498e3933486da\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_06cec914ee6c6c28364a31be27533d88dd041059\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\2cfeb8fc0bd39dd0cb1d04347fa9895ed0af99cb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_c50d689adb60d91e8278146badbc7fc0837ef91e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_67f5830a2e1118b29a755a7de4a3489d8377e2a1.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\2cfeb8fc0bd39dd0cb1d04347fa9895ed0af99cb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c50d689adb60d91e8278146badbc7fc0837ef91e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\43ecfae8c0bcd2b106d9b1f97dff79d1637e3fd8\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4e91c52c1af9eab48283a844487f6191eb0cd1f7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_67f5830a2e1118b29a755a7de4a3489d8377e2a1\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\efa87c48f9f7f14df25b9ab8e1646ff3b03b2269\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_c3ede56cd5fd93eff2e1eca2b1dd093804507bac.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\efa87c48f9f7f14df25b9ab8e1646ff3b03b2269\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c3ede56cd5fd93eff2e1eca2b1dd093804507bac\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="1b751b74331c0a1818338154f20bcf3782d7d39d">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_88360f56df007124e2b679453a76f00c1b3a8e52\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.0\support-annotations-25.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.0_a90ead9b5d4826d9da89e9c5602f9871d075055b\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\64881b393668babb6fb0d79aa954110f1edc605c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_20086b0f8cb35febba34d27152787ed816fc41d1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.0\support-annotations-25.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="dd84903d2e1af25a6081ef9038ad863cb14ca3a0">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\support-annotations-25.3.0_a90ead9b5d4826d9da89e9c5602f9871d075055b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\9e7997ceebe046e1179c8bcc48cf9ba3f1da2c26\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_52aac7347ad3e0ae9eff083717c1102be3058c10.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\64881b393668babb6fb0d79aa954110f1edc605c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_20086b0f8cb35febba34d27152787ed816fc41d1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\9e7997ceebe046e1179c8bcc48cf9ba3f1da2c26\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_52aac7347ad3e0ae9eff083717c1102be3058c10\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\d732a06d4628622978a2f561eaf7ebc321c295cc\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_b3c7e1e8bab761379f737b6be79abca7087c5a70.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\700af92a98685b24a0e13cd29678dd9303fb9e62\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b0ff2367e8be9ef54326b3e419a037219c65a2a6\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\700af92a98685b24a0e13cd29678dd9303fb9e62\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_b0ff2367e8be9ef54326b3e419a037219c65a2a6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\43ecfae8c0bcd2b106d9b1f97dff79d1637e3fd8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_4e91c52c1af9eab48283a844487f6191eb0cd1f7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\6d20d36224c4fbe1f1dd4c2de55b9fd66a69aa85\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_5e2e72b095122ab1e04981e451fa3c79dce95616.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\d732a06d4628622978a2f561eaf7ebc321c295cc\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b3c7e1e8bab761379f737b6be79abca7087c5a70\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="c82741bc129dd5f99f11a4ab8666ae24262053b6">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_7eb68400eaea42345bc41cb57e48ef89e535ab32\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\393944d43e2efd50f3a8c76838656c707e896212\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f5aef997d2ba19837c599c77021445163d9f0838\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\6d20d36224c4fbe1f1dd4c2de55b9fd66a69aa85\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5e2e72b095122ab1e04981e451fa3c79dce95616\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\615b462c05bce6105ce9d78834a8a6971d2454c3\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_af03b52a39965bcd2a5daafa51e903e63e08d314.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Benedikt\.android\build-cache\615b462c05bce6105ce9d78834a8a6971d2454c3\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_af03b52a39965bcd2a5daafa51e903e63e08d314\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\393944d43e2efd50f3a8c76838656c707e896212\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_f5aef997d2ba19837c599c77021445163d9f0838.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\Users\Benedikt\.android\build-cache\2ead4b3fe853be190ca63a620fc19fafd4788eda\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\Benedikt\AndroidStudioProjects\FitNet\app\build\intermediates\pre-dexed\debug\classes_2817fdbfcb9bc970f585ce7d31224e35af5f2038.jar" />
+    </item>
+
+</items>
