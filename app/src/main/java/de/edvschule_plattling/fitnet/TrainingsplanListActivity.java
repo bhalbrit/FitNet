@@ -54,7 +54,6 @@ public class TrainingsplanListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 startActivity(intent);
             }
         });
