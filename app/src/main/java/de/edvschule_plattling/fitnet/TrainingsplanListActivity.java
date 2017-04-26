@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -58,6 +60,13 @@ public class TrainingsplanListActivity extends AppCompatActivity {
             }
         });
 
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+
         View recyclerView = findViewById(R.id.trainingsplan_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
@@ -94,6 +103,12 @@ public class TrainingsplanListActivity extends AppCompatActivity {
             return new ViewHolder(view);
         }
 
+
+        public void onOptionsItemSelected(MenuItem item) {
+            //TODO WEitermachen
+            finish();
+        }
+
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
@@ -123,6 +138,8 @@ public class TrainingsplanListActivity extends AppCompatActivity {
             });
         }
 
+
+
         @Override
         public int getItemCount() {
             return mValues.size();
@@ -134,7 +151,7 @@ public class TrainingsplanListActivity extends AppCompatActivity {
             public final TextView mContentView;
             public Uebung mItem;
 
-            public ViewHolder(View view) {
+            public ViewHolder(View view) {//Kommentar
                 super(view);
                 mView = view;
                 mIdView = (TextView) view.findViewById(R.id.id);
