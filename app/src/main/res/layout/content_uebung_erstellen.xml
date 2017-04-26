@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="de.edvschule_plattling.fitnet.Uebung_erstellen"
+    tools:showIn="@layout/activity_uebung_erstellen">
+
+    <LinearLayout
+        android:layout_width="368dp"
+        android:layout_height="495dp"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+
+        <EditText
+            android:id="@+id/editText_bezeichnung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Bezeichnung"
+            android:inputType="textPersonName" />
+
+        <EditText
+            android:id="@+id/editText_beschreibung"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Bechreibung"
+            android:inputType="textPersonName" />
+
+        <Button
+            android:id="@+id/buttonspeichernplan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speichern" />
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

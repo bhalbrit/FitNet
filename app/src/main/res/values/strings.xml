@@ -7,4 +7,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_trainingsplan_erstellen">Trainingsplan_erstellen</string>
     <string name="title_activity_app__startseite">App_StartseiteActivity</string>
+    <string name="title_trainingplan_list">Trainingsplaene</string>
+    <string name="title_trainingplan_detail">Trainingplan Detail</string>
 </resources>
