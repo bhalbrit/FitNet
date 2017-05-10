@@ -2,12 +2,12 @@
 <android.support.v7.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/trainingsplan_list"
-    android:name="de.edvschule_plattling.fitnet.TrainingsplanListFragment"
+    android:id="@+id/uebung_list"
+    android:name="de.edvschule_plattling.fitnet.UebungListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context="de.edvschule_plattling.fitnet.UebungListActivity"
-    tools:listitem="@layout/trainingsplan_list_content" />
+    tools:listitem="@layout/uebung_list_content" />

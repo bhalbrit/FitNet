@@ -16,9 +16,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 
+import de.edvschule_plattling.fitnet.klassen.Trainingsplaene;
 import de.edvschule_plattling.fitnet.klassen.Trainingsplan;
 import de.edvschule_plattling.fitnet.klassen.Uebung;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,21 +38,44 @@ public class UebungListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
-    private  Intent intent;
+    private Intent intent;
+    private Trainingsplan trainingsplan;
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        View recyclerView = findViewById(R.id.uebung_list);
+        assert recyclerView != null;
+        setupRecyclerView((RecyclerView) recyclerView);
+
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_uebung_list);
 
+
+        Intent intent2 = getIntent();
+
+        String nr = intent2.getStringExtra("nr");
+
+        trainingsplan = Trainingsplaene.getbyId(Integer.parseInt(nr));
+
+        setTitle(trainingsplan.getBezeichnung());
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
-         intent = new Intent(this,Uebung_erstellen.class);
+        intent = new Intent(this, Uebung_erstellen.class);
+        intent.putExtra("nr", String.valueOf(trainingsplan.getId()));
 
+        //button für Übung erstellen Activity
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,13 +90,13 @@ public class UebungListActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        //akt: test
+        // View recyclerView = findViewById(R.id.uebung_list);
+        // assert recyclerView != null;
+        // setupRecyclerView((RecyclerView) recyclerView);
 
-        View recyclerView = findViewById(R.id.trainingsplan_list);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
 
-
-        if (findViewById(R.id.trainingsplan_detail_container) != null) {
+        if (findViewById(R.id.uebung_detail_container) != null) {
             // The detail container view will be present only in the
             // large-screen layouts (res/values-w900dp).
             // If this view is present, then the
@@ -81,38 +106,39 @@ public class UebungListActivity extends AppCompatActivity {
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(Trainingsplan.uebungen));
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(trainingsplan.getUebungen_keys()));
     }
-
 
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<Uebung> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<Uebung> items) {
-            mValues = items;
+        private List<Uebung> mValues = new ArrayList<>();
+
+        public SimpleItemRecyclerViewAdapter(List<String> items) {
+
+            //Übungen filtern und schauen, welche Übungen zu diesem Traingsplan gehören
+            for (String item : items) {
+                if (Trainingsplaene.UEBUNG_MAP.containsKey(item)) {
+                    mValues.add(Trainingsplaene.UEBUNG_MAP.get(item));
+                }
+
+            }
         }
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.trainingsplan_list_content, parent, false);
+                    .inflate(R.layout.uebung_list_content, parent, false);
             return new ViewHolder(view);
         }
 
 
-        public void onOptionsItemSelected(MenuItem item) {
-            //TODO WEitermachen
-            finish();
-        }
-
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-
-            holder.mIdView.setText(String.valueOf(mValues.get(position).getId()));
+            holder.mIdView.setText(String.valueOf(position + 1));
             holder.mContentView.setText(mValues.get(position).getBezeichnung());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -124,19 +150,19 @@ public class UebungListActivity extends AppCompatActivity {
                         UebungDetailFragment fragment = new UebungDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.trainingsplan_detail_container, fragment)
+                                .replace(R.id.uebung_detail_container, fragment)
                                 .commit();
                     } else {
                         Context context = v.getContext();
+
                         Intent intent = new Intent(context, UebungDetailActivity.class);
                         intent.putExtra(UebungDetailFragment.ARG_ITEM_ID, String.valueOf(holder.mItem.getId()));
-
+                        intent.putExtra("nr", String.valueOf(trainingsplan.getId()));
                         context.startActivity(intent);
                     }
                 }
             });
         }
-
 
 
         @Override
@@ -161,6 +187,21 @@ public class UebungListActivity extends AppCompatActivity {
             public String toString() {
                 return super.toString() + " '" + mContentView.getText() + "'";
             }
+        }
+
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // this takes the user 'back', as if they pressed the left-facing triangle icon on the main android toolbar.
+                // if this doesn't work as desired, another possibility is to call `finish()` here.
+                this.onBackPressed();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

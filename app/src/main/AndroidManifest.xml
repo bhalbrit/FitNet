@@ -11,8 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".UebungListActivity"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="@string/titel_uebungen"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UebungDetailActivity"
             android:label="@string/title_trainingsplan_detail"
@@ -24,11 +24,11 @@
         </activity>
         <activity
             android:name=".Uebung_erstellen"
-            android:label="@string/title_activity_trainingsplan_erstellen"
+            android:label="@string/titel_uebung_erstellen"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".App_StartseiteActivity"
-            android:label="@string/title_activity_app__startseite"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,16 +39,11 @@
         <activity
             android:name=".TrainingplanListActivity"
             android:label="@string/title_trainingplan_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".TrainingplanDetailActivity"
-            android:label="@string/title_trainingplan_detail"
-            android:parentActivityName=".TrainingplanListActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="de.edvschule_plattling.fitnet.TrainingplanListActivity" />
-        </activity>
+            android:name=".Trainingsplan_erstellen"
+            android:label="@string/titel_trainingsplan_erstellen"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

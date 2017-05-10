@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import de.edvschule_plattling.fitnet.klassen.Trainingsplan;
+import de.edvschule_plattling.fitnet.klassen.Trainingsplaene;
 import de.edvschule_plattling.fitnet.klassen.Uebung;
 
 /**
- * A fragment representing a single uebungen detail screen.
+ * A fragment representing a single uebungen_keys detail screen.
  * This fragment is either contained in a {@link UebungListActivity}
  * in two-pane mode (on tablets) or a {@link UebungDetailActivity}
  * on handsets.
@@ -25,17 +25,12 @@ public class UebungDetailFragment extends Fragment {
      */
     public static final String ARG_ITEM_ID = "item_id";
 
-    /**
-     * The dummy content this fragment is presenting.
-     */
     private Uebung mItem;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
+
     public UebungDetailFragment() {
     }
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,7 +40,7 @@ public class UebungDetailFragment extends Fragment {
             // Load the dummy content specified by the fragment
             // arguments. In a real-world scenario, use a Loader
             // to load content from a content provider.
-            mItem = Trainingsplan.TRAININGSPLAN_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            mItem = Trainingsplaene.UEBUNG_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
@@ -60,9 +55,9 @@ public class UebungDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.uebung_detail, container, false);
 
-        // Show the dummy content as text in a TextView.
+        // Show the  content as text in a TextView.
         if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.trainingsplan_detail)).setText(mItem.getBeschreibung());
+            ((TextView) rootView.findViewById(R.id.uebung_detail)).setText(mItem.getBeschreibung());
         }
 
         return rootView;

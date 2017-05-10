@@ -15,21 +15,22 @@ public class App_StartseiteActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_app__startseite);
+        setContentView(R.layout.activity_app_startseite);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         toolbar.setTitle(getTitle());
         buttontraingsplan = (Button) findViewById(R.id.button);
-        intent = new Intent(this,UebungListActivity.class);
+        intent = new Intent(this, TrainingplanListActivity.class);
 
+
+        //Startbutton für Traingsplan Activity
         buttontraingsplan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(intent);
             }
         });
-
 
 
     }

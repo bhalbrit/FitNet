@@ -15,6 +15,7 @@ public class Uebung {
         this.id = id;
         this.bezeichnung = bezeichnung;
         this.beschreibung = beschreibung;
+
     }
 
     public int getId() {
@@ -40,6 +41,7 @@ public class Uebung {
     public void setBeschreibung(String beschreibung) {
         this.beschreibung = beschreibung;
     }
+
 
     @Override
     public String toString() {
