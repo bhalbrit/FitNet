@@ -30,6 +30,14 @@ public class TrainingplanListActivity extends AppCompatActivity {
     private Intent intent2;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        View recyclerView = findViewById(R.id.trainingplan_list);
+        assert recyclerView != null;
+        setupRecyclerView((RecyclerView) recyclerView);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainingplan_list);
@@ -55,9 +63,7 @@ public class TrainingplanListActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        View recyclerView = findViewById(R.id.trainingplan_list);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+
 
         if (findViewById(R.id.trainingplan_detail_container) != null) {
             // The detail container view will be present only in the
