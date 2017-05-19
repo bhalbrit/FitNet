@@ -14,7 +14,7 @@ public class Trainingsplan {
 
     private String bezeichnung;
 
-    public List<String> uebungen_keys = new ArrayList<>();
+    private List<String> uebungen_keys = new ArrayList<>();
 
 
     public Trainingsplan(int id, String bezeichnung) {
@@ -22,6 +22,11 @@ public class Trainingsplan {
         this.bezeichnung = bezeichnung;
     }
 
+    public Trainingsplan(int id, String bezeichnung,List<String> list) {
+        this.id = id;
+        this.bezeichnung = bezeichnung;
+        this.uebungen_keys=list;
+    }
 
     public String getBezeichnung() {
         return bezeichnung;

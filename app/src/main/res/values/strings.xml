@@ -7,6 +7,8 @@
     <string name="titel_trainingsplaene">Trainingspläne</string>
     <string name="fehler_alle_felder_asfuellen">Bitte alle felder ausfüllen!</string>
     <string name="titel_uebung_bearbeiten">Übung bearbeiten</string>
+    <string name="fehler_abspeichern">Es ist ein Fehler beim speichern aufgetreten</string>
+
 
     //evt entfernen
     <string name="hello_blank_fragment">Hello blank fragment</string>

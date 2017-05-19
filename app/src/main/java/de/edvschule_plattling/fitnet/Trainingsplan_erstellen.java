@@ -50,7 +50,7 @@ public class Trainingsplan_erstellen extends AppCompatActivity {
                     toast.show();
 
                 } else {
-                    //Speichert eine neue Uebung ein
+                    //Speichert eine neuen Trainingsplan ein
                     mItem = new Trainingsplan(TRAININGSPLAN_MAP.size() + 1, bez.getText().toString());
                     trainingsplaene.add(mItem);
                     TRAININGSPLAN_MAP.put(String.valueOf(mItem.getId()), mItem);

@@ -72,6 +72,9 @@ public class TrainingplanListActivity extends AppCompatActivity {
             // activity should be in two-pane mode.
             mTwoPane = true;
         }
+
+        //Lädt Pläne aus shared prefs
+        Trainingsplaene.laden(getSharedPreferences("SharedUebungen", Context.MODE_PRIVATE));
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
