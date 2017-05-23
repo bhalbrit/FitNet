@@ -1,19 +1,23 @@
 package de.edvschule_plattling.fitnet;
 
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import de.edvschule_plattling.fitnet.klassen.Trainingsplaene;
 import de.edvschule_plattling.fitnet.klassen.Trainingsplan;
 
@@ -28,6 +32,9 @@ public class TrainingplanListActivity extends AppCompatActivity {
     private boolean mTwoPane;
     private Intent intent;
     private Intent intent2;
+    private Intent intenttraining;
+    private SimpleItemRecyclerViewAdapter.ViewHolder Vholder;
+    AlertDialog.Builder builder;
 
     @Override
     protected void onResume() {
@@ -42,12 +49,14 @@ public class TrainingplanListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trainingplan_list);
 
+        builder = new AlertDialog.Builder(this);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
         intent = new Intent(this, Trainingsplan_erstellen.class);
         intent2 = new Intent(this, UebungListActivity.class);
-
+        intenttraining = new Intent(this,TraingsplanTrainieren.class);
         //Button zur Traingsplan erstellen Activity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +71,6 @@ public class TrainingplanListActivity extends AppCompatActivity {
             actionBar.setHomeButtonEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-
 
 
         if (findViewById(R.id.trainingplan_detail_container) != null) {
@@ -84,8 +92,12 @@ public class TrainingplanListActivity extends AppCompatActivity {
         private final List<Trainingsplan> mValues;
 
         public SimpleItemRecyclerViewAdapter(List<Trainingsplan> items) {
+
+
             mValues = items;
         }
+
+
 
         @Override
         public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -97,8 +109,9 @@ public class TrainingplanListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(String.valueOf(mValues.get(position).getId()));
+            holder.mIdView.setText(String.valueOf(position+1));
             holder.mContentView.setText(mValues.get(position).getBezeichnung());
+
 
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
@@ -117,13 +130,51 @@ public class TrainingplanListActivity extends AppCompatActivity {
 
 
                     } else {
-                        Context context = v.getContext();
-                        //  Intent intent = new Intent(context, TrainingplanDetailActivity.class);
-                        intent2.putExtra("nr", String.valueOf(holder.mItem.getId()));
-                        context.startActivity(intent2);
+
+
+
+                        builder.setTitle(R.string.start_training);
+                        //builder.setMessage(R.string.sicher);
+
+                        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            startActivity(intenttraining);
+
+                                dialog.dismiss();
+                            }
+                        });
+
+                        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Do nothing
+                                dialog.dismiss();
+                            }
+                        });
+
+                        AlertDialog alert = builder.create();
+                        alert.show();
+
 
 
                     }
+                }
+
+            });
+
+            holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    Vholder=holder;
+                    registerForContextMenu(v);
+                    openContextMenu(v);
+                    unregisterForContextMenu(v);
+
+                return true;
                 }
             });
         }
@@ -153,6 +204,7 @@ public class TrainingplanListActivity extends AppCompatActivity {
         }
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -165,4 +217,42 @@ public class TrainingplanListActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0, v.getId(), 0, "Traingsplan löschen");
+        menu.add(0, v.getId(), 0, "Traingsplan bearbeiten");
+
+
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getTitle().equals("Traingsplan löschen")){
+            loeschetraingsplan();
+        } else if (item.getTitle().equals("Traingsplan bearbeiten")) {
+            bearbeiteplan();
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    public void loeschetraingsplan() {
+
+        Trainingsplan trainingsplan = Vholder.mItem;
+        Trainingsplaene.trainingsplaene.remove(trainingsplan);
+        Trainingsplaene.TRAININGSPLAN_MAP.remove(trainingsplan);
+        Toast.makeText(this,"Trainingsplan '" + trainingsplan.getBezeichnung() + " ' gelöscht", Toast.LENGTH_SHORT).show();
+        onResume();
+
+    }
+
+    public void bearbeiteplan() {
+        intent2.putExtra("nr", String.valueOf(Vholder.mItem.getId()));
+        startActivity(intent2);
+    }
 }
+

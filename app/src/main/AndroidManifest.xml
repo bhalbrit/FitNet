@@ -43,7 +43,10 @@
         <activity
             android:name=".Trainingsplan_erstellen"
             android:label="@string/titel_trainingsplan_erstellen"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".TraingsplanTrainieren"
+            android:label="@string/title_activity_traingsplan_trainieren"></activity>
     </application>
 
 </manifest>

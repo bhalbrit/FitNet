@@ -1,19 +1,24 @@
 package de.edvschule_plattling.fitnet;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import de.edvschule_plattling.fitnet.klassen.Trainingsplaene;
@@ -40,6 +45,7 @@ public class UebungListActivity extends AppCompatActivity {
     private boolean mTwoPane;
     private Intent intent;
     private Trainingsplan trainingsplan;
+    private UebungListActivity.SimpleItemRecyclerViewAdapter.ViewHolder Vholder;
 
 
     @Override
@@ -141,6 +147,8 @@ public class UebungListActivity extends AppCompatActivity {
             holder.mIdView.setText(String.valueOf(position + 1));
             holder.mContentView.setText(mValues.get(position).getBezeichnung());
 
+
+
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -153,15 +161,36 @@ public class UebungListActivity extends AppCompatActivity {
                                 .replace(R.id.uebung_detail_container, fragment)
                                 .commit();
                     } else {
-                        Context context = v.getContext();
+
+
+
+                       Context context = v.getContext();
 
                         Intent intent = new Intent(context, UebungDetailActivity.class);
-                        intent.putExtra(UebungDetailFragment.ARG_ITEM_ID, String.valueOf(holder.mItem.getId()));
+                       intent.putExtra(UebungDetailFragment.ARG_ITEM_ID, String.valueOf(holder.mItem.getId()));
                         intent.putExtra("nr", String.valueOf(trainingsplan.getId()));
-                        context.startActivity(intent);
+                       context.startActivity(intent);
                     }
                 }
+
+
+
             });
+
+            holder.mView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+
+                    Vholder=holder;
+                    registerForContextMenu(v);
+                    openContextMenu(v);
+                    unregisterForContextMenu(v);
+
+                    return true;
+                }
+            });
+
+
         }
 
 
@@ -192,6 +221,42 @@ public class UebungListActivity extends AppCompatActivity {
 
     }
 
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        menu.add(0, v.getId(), 0, "Übung löschen");
+
+
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getTitle().equals("Übung löschen")) {
+            loescheuebung();
+        } else {
+            return false;
+        }
+        return true;
+    }
+
+    public void loescheuebung() {
+
+        Uebung uebung = Vholder.mItem;
+        trainingsplan.getUebungen_keys().remove(String.valueOf(uebung.getId()));
+        Trainingsplaene.UEBUNG_MAP.remove(uebung);
+        Toast.makeText(this, "Übung '" +uebung.getBezeichnung() + "' gelöscht", Toast.LENGTH_SHORT).show();
+        onResume();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -200,8 +265,46 @@ public class UebungListActivity extends AppCompatActivity {
                 // if this doesn't work as desired, another possibility is to call `finish()` here.
                 this.onBackPressed();
                 return true;
+            case R.id.menu_clear:
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.setTitle(R.string.alle_uebungen_loeschen);
+                builder.setMessage(R.string.sicher);
+
+                builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        clearUebungen();
+
+                        dialog.dismiss();
+                    }
+                });
+
+                builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Do nothing
+                        dialog.dismiss();
+                    }
+                });
+
+                AlertDialog alert = builder.create();
+                alert.show();
+
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+    public void clearUebungen(){
+        trainingsplan.getUebungen_keys().clear();
+        onResume();
+    }
+
+
 }

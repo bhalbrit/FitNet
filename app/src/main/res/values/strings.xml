@@ -7,6 +7,17 @@
     <string name="titel_trainingsplaene">Trainingspläne</string>
     <string name="fehler_alle_felder_asfuellen">Bitte alle felder ausfüllen!</string>
     <string name="titel_uebung_bearbeiten">Übung bearbeiten</string>
+    <string name="loeschen">Trainingsplan löschen</string>
+    <string name="starten">Training starten</string>
+    <string name="bearbeiten">Trainingsplan bearbeiten</string>
+    <string name="alle_uebungen_loeschen">Alle Übungen löschen</string>
+    <string name="sicher">Bist du sicher?</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nein</string>
+    <string name="start_training">Training starten</string>
+    <string name="title_next">Nächste Übung</string>
+    <string name="title_last">Vorherige Übung</string>
+
 
     //evt entfernen
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -14,4 +25,6 @@
     <string name="title_activity_app__startseite">App_StartseiteActivity</string>
     <string name="title_trainingplan_list">Trainingsplaene</string>
     <string name="title_trainingplan_detail">Trainingplan Detail</string>
+    <string name="title_activity_traingsplan_trainieren">Training</string>
+
 </resources>
