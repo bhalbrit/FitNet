@@ -11,7 +11,9 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e2449da8-fe79-4147-b121-7174472f0759" name="Default" comment="" />
+    <list default="true" id="e2449da8-fe79-4147-b121-7174472f0759" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="FitNet.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="build/" />
