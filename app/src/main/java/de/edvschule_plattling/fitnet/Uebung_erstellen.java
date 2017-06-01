@@ -1,6 +1,8 @@
 package de.edvschule_plattling.fitnet;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,9 +12,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import de.edvschule_plattling.fitnet.klassen.Trainingsplaene;
 import de.edvschule_plattling.fitnet.klassen.Trainingsplan;
 import de.edvschule_plattling.fitnet.klassen.Uebung;
+
+import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.TRAININGSPLAN_MAP;
+import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.UEBUNG_MAP;
 
 
 public class Uebung_erstellen extends AppCompatActivity {
@@ -23,6 +29,8 @@ public class Uebung_erstellen extends AppCompatActivity {
     private boolean aenderung = false;
     private Trainingsplan trainingsplan;
 
+    private SharedPreferences keyValues;
+    private SharedPreferences.Editor keyValuesEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +49,8 @@ public class Uebung_erstellen extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
+        keyValues =getSharedPreferences("SharedUebungen", Context.MODE_PRIVATE);
+        keyValuesEditor = keyValues.edit();
         //Lädt werte aus HashMap und trägt sie in Textfelder ein
         Intent intent = getIntent();
         String nr = intent.getStringExtra("nr");
@@ -72,15 +82,15 @@ public class Uebung_erstellen extends AppCompatActivity {
                 } else {
                     if (!aenderung) {
                         //Speichert eine neue Uebung ein
-                        mItem = new Uebung(Trainingsplaene.UEBUNG_MAP.size() + 1, bez.getText().toString(), besch.getText().toString());
-                        trainingsplan.uebungen_keys.add(String.valueOf(mItem.getId()));
-                        Trainingsplaene.UEBUNG_MAP.put(String.valueOf(mItem.getId()), mItem);
+                        mItem = new Uebung(UEBUNG_MAP.size() + 1, bez.getText().toString(), besch.getText().toString());
+                        //schaun ob des funktioneirt hat
+                        Trainingsplaene.einfuegen(mItem,trainingsplan,  keyValuesEditor,getApplicationContext());
 
                     } else {
                         //Aktualisiert eine vorhandene Uebung
                         mItem.setBeschreibung(besch.getText().toString());
                         mItem.setBezeichnung(bez.getText().toString());
-
+                        Trainingsplaene.weggschreiben(UEBUNG_MAP,TRAININGSPLAN_MAP,keyValuesEditor,getApplicationContext());
                     }
 
                     finish();
@@ -90,6 +100,8 @@ public class Uebung_erstellen extends AppCompatActivity {
             }
         });
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

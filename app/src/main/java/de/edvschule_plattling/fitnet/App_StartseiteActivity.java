@@ -1,11 +1,14 @@
 package de.edvschule_plattling.fitnet;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+
+import de.edvschule_plattling.fitnet.klassen.Trainingsplaene;
 
 public class App_StartseiteActivity extends AppCompatActivity {
 
@@ -28,7 +31,9 @@ public class App_StartseiteActivity extends AppCompatActivity {
         buttontraingsplan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(intent);
+
             }
         });
 

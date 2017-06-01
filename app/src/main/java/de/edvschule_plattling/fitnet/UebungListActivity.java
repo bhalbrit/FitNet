@@ -123,6 +123,7 @@ public class UebungListActivity extends AppCompatActivity {
         private List<Uebung> mValues = new ArrayList<>();
 
         public SimpleItemRecyclerViewAdapter(List<String> items) {
+            //Aus shared prefs laden
 
             //Übungen filtern und schauen, welche Übungen zu diesem Traingsplan gehören
             for (String item : items) {
