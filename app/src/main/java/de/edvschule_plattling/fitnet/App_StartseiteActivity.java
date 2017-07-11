@@ -32,7 +32,7 @@ public class App_StartseiteActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                startActivity(intent);
+                    startActivity(intent);
 
             }
         });

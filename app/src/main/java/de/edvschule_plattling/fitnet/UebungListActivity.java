@@ -3,6 +3,7 @@ package de.edvschule_plattling.fitnet;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -28,6 +29,9 @@ import de.edvschule_plattling.fitnet.klassen.Uebung;
 import java.util.ArrayList;
 import java.util.List;
 
+import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.TRAININGSPLAN_MAP;
+import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.UEBUNG_MAP;
+
 /**
  * An activity representing a list of Trainingsplaene. This activity
  * has different presentations for handset and tablet-size devices. On
@@ -46,6 +50,9 @@ public class UebungListActivity extends AppCompatActivity {
     private Intent intent;
     private Trainingsplan trainingsplan;
     private UebungListActivity.SimpleItemRecyclerViewAdapter.ViewHolder Vholder;
+
+    private SharedPreferences keyValues;
+    private SharedPreferences.Editor keyValuesEditor;
 
 
     @Override
@@ -109,6 +116,9 @@ public class UebungListActivity extends AppCompatActivity {
             // activity should be in two-pane mode.
             mTwoPane = true;
         }
+
+        keyValues =getSharedPreferences("SharedUebungen", Context.MODE_PRIVATE);
+        keyValuesEditor = keyValues.edit();
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
@@ -162,15 +172,12 @@ public class UebungListActivity extends AppCompatActivity {
                                 .replace(R.id.uebung_detail_container, fragment)
                                 .commit();
                     } else {
-
-
-
                        Context context = v.getContext();
 
                         Intent intent = new Intent(context, UebungDetailActivity.class);
-                       intent.putExtra(UebungDetailFragment.ARG_ITEM_ID, String.valueOf(holder.mItem.getId()));
+                        intent.putExtra(UebungDetailFragment.ARG_ITEM_ID, String.valueOf(holder.mItem.getId()));
                         intent.putExtra("nr", String.valueOf(trainingsplan.getId()));
-                       context.startActivity(intent);
+                        context.startActivity(intent);
                     }
                 }
 
@@ -246,7 +253,8 @@ public class UebungListActivity extends AppCompatActivity {
 
         Uebung uebung = Vholder.mItem;
         trainingsplan.getUebungen_keys().remove(String.valueOf(uebung.getId()));
-        Trainingsplaene.UEBUNG_MAP.remove(uebung);
+        //Trainingsplaene.UEBUNG_MAP.remove(uebung);
+        Trainingsplaene.weggschreiben(UEBUNG_MAP,TRAININGSPLAN_MAP,keyValuesEditor,getApplicationContext());
         Toast.makeText(this, "Übung '" +uebung.getBezeichnung() + "' gelöscht", Toast.LENGTH_SHORT).show();
         onResume();
 
@@ -279,7 +287,6 @@ public class UebungListActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
 
                         clearUebungen();
-
                         dialog.dismiss();
                     }
                 });
@@ -303,7 +310,13 @@ public class UebungListActivity extends AppCompatActivity {
     }
 
     public void clearUebungen(){
+       // for(String uebungBez:trainingsplan.getUebungen_keys()){
+         //   Trainingsplaene.UEBUNG_MAP.remove(uebungBez);
+        //}
         trainingsplan.getUebungen_keys().clear();
+        Trainingsplaene.weggschreiben(UEBUNG_MAP,TRAININGSPLAN_MAP,keyValuesEditor,getApplicationContext());
+
+
         onResume();
     }
 

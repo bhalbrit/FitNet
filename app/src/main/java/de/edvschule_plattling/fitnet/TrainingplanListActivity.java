@@ -1,7 +1,9 @@
 package de.edvschule_plattling.fitnet;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -18,10 +20,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import de.edvschule_plattling.fitnet.klassen.Trainingseinheit;
 import de.edvschule_plattling.fitnet.klassen.Trainingsplaene;
 import de.edvschule_plattling.fitnet.klassen.Trainingsplan;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
+
+import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.TRAININGSPLAN_MAP;
+import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.UEBUNG_MAP;
 
 public class TrainingplanListActivity extends AppCompatActivity {
 
@@ -35,6 +42,12 @@ public class TrainingplanListActivity extends AppCompatActivity {
     private Intent intenttraining;
     private SimpleItemRecyclerViewAdapter.ViewHolder Vholder;
     AlertDialog.Builder builder;
+
+
+    private SharedPreferences keyValues;
+    private SharedPreferences.Editor keyValuesEditor;
+
+    private final SimpleDateFormat sdf=new SimpleDateFormat("dd.MM.yyyy");
 
     @Override
     protected void onResume() {
@@ -83,6 +96,9 @@ public class TrainingplanListActivity extends AppCompatActivity {
 
         //Lädt Pläne aus shared prefs
         Trainingsplaene.laden(getSharedPreferences("SharedUebungen", Context.MODE_PRIVATE));
+
+        keyValues =getSharedPreferences("SharedUebungen", Context.MODE_PRIVATE);
+        keyValuesEditor = keyValues.edit();
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
@@ -114,6 +130,13 @@ public class TrainingplanListActivity extends AppCompatActivity {
             holder.mItem = mValues.get(position);
             holder.mIdView.setText(String.valueOf(position+1));
             holder.mContentView.setText(mValues.get(position).getBezeichnung());
+            Trainingseinheit latest=mValues.get(position).getLatestTraining();
+            if(latest==null){
+                holder.mLatest.setText(getString(R.string.bisher_unbenutzt));
+            }else{
+                holder.mLatest.setText(sdf.format(latest.getTrainingstag()));
+            }
+
 
 
 
@@ -191,12 +214,14 @@ public class TrainingplanListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
+            public final TextView mLatest;
             public Trainingsplan mItem;
 
             public ViewHolder(View view) {
                 super(view);
                 mView = view;
                 mIdView = (TextView) view.findViewById(R.id.id);
+                mLatest = (TextView) view.findViewById(R.id.latest);
                 mContentView = (TextView) view.findViewById(R.id.content);
             }
 
@@ -247,7 +272,14 @@ public class TrainingplanListActivity extends AppCompatActivity {
 
         Trainingsplan trainingsplan = Vholder.mItem;
         Trainingsplaene.trainingsplaene.remove(trainingsplan);
-        Trainingsplaene.TRAININGSPLAN_MAP.remove(trainingsplan);
+        Trainingsplaene.TRAININGSPLAN_MAP.remove(String.valueOf(trainingsplan.getId()));
+
+        //Zugehörige Übungen Löschen
+        for(String uebungBez:trainingsplan.getUebungen_keys()){
+            Trainingsplaene.UEBUNG_MAP.remove(uebungBez);
+        }
+        Trainingsplaene.weggschreiben(UEBUNG_MAP,TRAININGSPLAN_MAP,keyValuesEditor,getApplicationContext());
+
         Toast.makeText(this,"Trainingsplan '" + trainingsplan.getBezeichnung() + " ' gelöscht", Toast.LENGTH_SHORT).show();
         onResume();
 

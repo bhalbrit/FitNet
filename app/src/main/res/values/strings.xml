@@ -19,7 +19,7 @@
     <string name="title_last">Vorherige Übung</string>
 
     <string name="fehler_abspeichern">Es ist ein Fehler beim speichern aufgetreten</string>
-
+    <string name="bisher_unbenutzt">-bisher unbenutzt-</string>
 
     //evt entfernen
     <string name="hello_blank_fragment">Hello blank fragment</string>
