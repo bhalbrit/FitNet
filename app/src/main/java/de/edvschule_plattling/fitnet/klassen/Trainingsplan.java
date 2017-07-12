@@ -22,10 +22,10 @@ public class Trainingsplan {
         this.bezeichnung = bezeichnung;
     }
 
-    public Trainingsplan(int id, String bezeichnung,List<String> list) {
+    public Trainingsplan(int id, String bezeichnung, List<String> list) {
         this.id = id;
         this.bezeichnung = bezeichnung;
-        this.uebungen_keys=list;
+        this.uebungen_keys = list;
     }
 
     public String getBezeichnung() {

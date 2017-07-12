@@ -9,19 +9,27 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import de.edvschule_plattling.fitnet.klassen.Trainingsplaene;
+import de.edvschule_plattling.fitnet.klassen.Trainingsplan;
 import de.edvschule_plattling.fitnet.klassen.Uebung;
 
+import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.TRAININGSPLAN_MAP;
+import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.trainingsplaene;
 
 
 public class TrainingsplanTrainierenFragment extends Fragment {
 
 
-    public static final String ARG_ITEM_ID = "item_id";
+    public static final String ARG_ITEM_ID2 = "item_id";
 
-    private Uebung mItem;
+    private String bezeichnung;
+    private String beschreibung;
+    private boolean btnanzeigen;
+    private Activity activity;
 
 
     public TrainingsplanTrainierenFragment() {
@@ -32,30 +40,45 @@ public class TrainingsplanTrainierenFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (getArguments().containsKey(ARG_ITEM_ID)) {
-            // Load the dummy content specified by the fragment
-            // arguments. In a real-world scenario, use a Loader
-            // to load content from a content provider.
-            mItem = Trainingsplaene.UEBUNG_MAP.get(getArguments().getString(ARG_ITEM_ID));
 
-            Activity activity = this.getActivity();
-            CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.getBezeichnung());
-            }
+        // Die Paramter des Arguments auslesen
+        bezeichnung = getArguments().getString("bez").toString();
+        beschreibung = getArguments().getString("besch").toString();
+        btnanzeigen = getArguments().getBoolean("letztes");
+
+        activity = this.getActivity();
+
+        CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
+        if (appBarLayout != null) {
+            appBarLayout.setTitle(bezeichnung);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.uebung_detail, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_trainingsplan_trainieren, container, false);
 
-        // Show the  content as text in a TextView.
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.uebung_detail)).setText(mItem.getBeschreibung());
+        //Textview befüllen
+        if (beschreibung != null) {
+            ((TextView) rootView.findViewById(R.id.trainingsplan_uebung_bez)).setText(beschreibung);
         }
+        // beenden-button anzeigen, wenn es die letze Übungs ist.
+        if (btnanzeigen == true) {
+            rootView.findViewById(R.id.buttonbeenden).setVisibility(View.VISIBLE);
+            final Button button = (Button) rootView.findViewById(R.id.buttonbeenden);
+            button.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
 
+                    //TODO datum
+
+                    activity.finish();
+
+                }
+            });
+        }
         return rootView;
     }
 }

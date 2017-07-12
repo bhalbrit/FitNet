@@ -149,7 +149,6 @@ public class UebungListActivity extends AppCompatActivity {
             holder.mContentView.setText(mValues.get(position).getBezeichnung());
 
 
-
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -164,16 +163,14 @@ public class UebungListActivity extends AppCompatActivity {
                     } else {
 
 
-
-                       Context context = v.getContext();
+                        Context context = v.getContext();
 
                         Intent intent = new Intent(context, UebungDetailActivity.class);
-                       intent.putExtra(UebungDetailFragment.ARG_ITEM_ID, String.valueOf(holder.mItem.getId()));
+                        intent.putExtra(UebungDetailFragment.ARG_ITEM_ID, String.valueOf(holder.mItem.getId()));
                         intent.putExtra("nr", String.valueOf(trainingsplan.getId()));
-                       context.startActivity(intent);
+                        context.startActivity(intent);
                     }
                 }
-
 
 
             });
@@ -182,7 +179,7 @@ public class UebungListActivity extends AppCompatActivity {
                 @Override
                 public boolean onLongClick(View v) {
 
-                    Vholder=holder;
+                    Vholder = holder;
                     registerForContextMenu(v);
                     openContextMenu(v);
                     unregisterForContextMenu(v);
@@ -223,7 +220,6 @@ public class UebungListActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -247,7 +243,7 @@ public class UebungListActivity extends AppCompatActivity {
         Uebung uebung = Vholder.mItem;
         trainingsplan.getUebungen_keys().remove(String.valueOf(uebung.getId()));
         Trainingsplaene.UEBUNG_MAP.remove(uebung);
-        Toast.makeText(this, "Übung '" +uebung.getBezeichnung() + "' gelöscht", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Übung '" + uebung.getBezeichnung() + "' gelöscht", Toast.LENGTH_SHORT).show();
         onResume();
 
     }
@@ -302,7 +298,7 @@ public class UebungListActivity extends AppCompatActivity {
         }
     }
 
-    public void clearUebungen(){
+    public void clearUebungen() {
         trainingsplan.getUebungen_keys().clear();
         onResume();
     }

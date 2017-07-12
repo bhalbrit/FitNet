@@ -17,6 +17,7 @@
     <string name="start_training">Training starten</string>
     <string name="title_next">Nächste Übung</string>
     <string name="title_last">Vorherige Übung</string>
+    <string name="uebung_hinzufügen">Bitte zuerst eine Übung hinzufügen</string>
 
     <string name="fehler_abspeichern">Es ist ein Fehler beim speichern aufgetreten</string>
 

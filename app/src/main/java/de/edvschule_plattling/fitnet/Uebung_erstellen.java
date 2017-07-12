@@ -49,7 +49,7 @@ public class Uebung_erstellen extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        keyValues =getSharedPreferences("SharedUebungen", Context.MODE_PRIVATE);
+        keyValues = getSharedPreferences("SharedUebungen", Context.MODE_PRIVATE);
         keyValuesEditor = keyValues.edit();
         //Lädt werte aus HashMap und trägt sie in Textfelder ein
         Intent intent = getIntent();
@@ -59,7 +59,7 @@ public class Uebung_erstellen extends AppCompatActivity {
         if (extras != null) {
             if (extras.containsKey(UebungDetailFragment.ARG_ITEM_ID)) {
                 String item_id =
-                extras.getString(UebungDetailFragment.ARG_ITEM_ID);
+                        extras.getString(UebungDetailFragment.ARG_ITEM_ID);
                 mItem = Trainingsplaene.UEBUNG_MAP.get(item_id);
                 bez.setText(mItem.getBezeichnung());
                 besch.setText(mItem.getBeschreibung());
@@ -84,13 +84,13 @@ public class Uebung_erstellen extends AppCompatActivity {
                         //Speichert eine neue Uebung ein
                         mItem = new Uebung(UEBUNG_MAP.size() + 1, bez.getText().toString(), besch.getText().toString());
                         //schaun ob des funktioneirt hat
-                        Trainingsplaene.einfuegen(mItem,trainingsplan,  keyValuesEditor,getApplicationContext());
+                        Trainingsplaene.einfuegen(mItem, trainingsplan, keyValuesEditor, getApplicationContext());
 
                     } else {
                         //Aktualisiert eine vorhandene Uebung
                         mItem.setBeschreibung(besch.getText().toString());
                         mItem.setBezeichnung(bez.getText().toString());
-                        Trainingsplaene.weggschreiben(UEBUNG_MAP,TRAININGSPLAN_MAP,keyValuesEditor,getApplicationContext());
+                        Trainingsplaene.weggschreiben(UEBUNG_MAP, TRAININGSPLAN_MAP, keyValuesEditor, getApplicationContext());
                     }
 
                     finish();
@@ -100,7 +100,6 @@ public class Uebung_erstellen extends AppCompatActivity {
             }
         });
     }
-
 
 
     @Override

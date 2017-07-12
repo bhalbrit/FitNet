@@ -1,5 +1,6 @@
 package de.edvschule_plattling.fitnet;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -56,7 +57,8 @@ public class TrainingplanListActivity extends AppCompatActivity {
         toolbar.setTitle(getTitle());
         intent = new Intent(this, Trainingsplan_erstellen.class);
         intent2 = new Intent(this, UebungListActivity.class);
-        intenttraining = new Intent(this,TraingsplanTrainieren.class);
+        intenttraining = new Intent(this, TraingsplanTrainieren.class);
+
         //Button zur Traingsplan erstellen Activity
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -74,10 +76,6 @@ public class TrainingplanListActivity extends AppCompatActivity {
 
 
         if (findViewById(R.id.trainingplan_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
             mTwoPane = true;
         }
 
@@ -95,11 +93,8 @@ public class TrainingplanListActivity extends AppCompatActivity {
         private final List<Trainingsplan> mValues;
 
         public SimpleItemRecyclerViewAdapter(List<Trainingsplan> items) {
-
-
             mValues = items;
         }
-
 
 
         @Override
@@ -112,57 +107,47 @@ public class TrainingplanListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(String.valueOf(position+1));
+            holder.mIdView.setText(String.valueOf(position + 1));
             holder.mContentView.setText(mValues.get(position).getBezeichnung());
-
 
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
-                        // Bundle arguments = new Bundle();
-                        // arguments.putString(TrainingplanDetailFragment.ARG_ITEM_ID, String.valueOf(holder.mItem.getId()));
-                        // TrainingplanDetailFragment fragment = new TrainingplanDetailFragment();
-                        // fragment.setArguments(arguments);
-                        // getSupportFragmentManager().beginTransaction()
-                        //       .replace(R.id.trainingplan_detail_container, fragment)
-                        //     .commit();
-
                         startActivity(intent2);
-
-
                     } else {
+                        //Prüfen, ob der Trainingsplan Übungen enthält
+                        if (holder.mItem.getUebungen_keys().size() == 0) {
+                            Toast toast = Toast.makeText(getApplicationContext(), R.string.uebung_hinzufügen, Toast.LENGTH_SHORT);
+                            toast.show();
+                        } else {
+
+                            builder.setTitle(R.string.start_training);
+
+                            builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                            // Dialogbox erscheinen lassen mit 'JA', 'NEIN' auswahl
+                                public void onClick(DialogInterface dialog, int which) {
+                                    intenttraining.putExtra(TrainingsplanTrainierenFragment.ARG_ITEM_ID2, String.valueOf(holder.mItem.getId()));
+                                    startActivity(intenttraining);
+
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    dialog.dismiss();
+                                }
+                            });
+
+                            AlertDialog alert = builder.create();
+                            alert.show();
 
 
-
-                        builder.setTitle(R.string.start_training);
-                        //builder.setMessage(R.string.sicher);
-
-                        builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
-
-                            public void onClick(DialogInterface dialog, int which) {
-
-                            startActivity(intenttraining);
-
-                                dialog.dismiss();
-                            }
-                        });
-
-                        builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Do nothing
-                                dialog.dismiss();
-                            }
-                        });
-
-                        AlertDialog alert = builder.create();
-                        alert.show();
-
-
-
+                        }
                     }
                 }
 
@@ -172,12 +157,12 @@ public class TrainingplanListActivity extends AppCompatActivity {
                 @Override
                 public boolean onLongClick(View v) {
 
-                    Vholder=holder;
+                    Vholder = holder;
                     registerForContextMenu(v);
                     openContextMenu(v);
                     unregisterForContextMenu(v);
 
-                return true;
+                    return true;
                 }
             });
         }
@@ -212,8 +197,6 @@ public class TrainingplanListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // this takes the user 'back', as if they pressed the left-facing triangle icon on the main android toolbar.
-                // if this doesn't work as desired, another possibility is to call `finish()` here.
                 this.onBackPressed();
                 return true;
             default:
@@ -228,12 +211,11 @@ public class TrainingplanListActivity extends AppCompatActivity {
         menu.add(0, v.getId(), 0, "Traingsplan bearbeiten");
 
 
-
     }
 
     @Override
     public boolean onContextItemSelected(MenuItem item) {
-        if (item.getTitle().equals("Traingsplan löschen")){
+        if (item.getTitle().equals("Traingsplan löschen")) {
             loeschetraingsplan();
         } else if (item.getTitle().equals("Traingsplan bearbeiten")) {
             bearbeiteplan();
@@ -244,11 +226,10 @@ public class TrainingplanListActivity extends AppCompatActivity {
     }
 
     public void loeschetraingsplan() {
-
         Trainingsplan trainingsplan = Vholder.mItem;
         Trainingsplaene.trainingsplaene.remove(trainingsplan);
         Trainingsplaene.TRAININGSPLAN_MAP.remove(trainingsplan);
-        Toast.makeText(this,"Trainingsplan '" + trainingsplan.getBezeichnung() + " ' gelöscht", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Trainingsplan '" + trainingsplan.getBezeichnung() + " ' gelöscht", Toast.LENGTH_SHORT).show();
         onResume();
 
     }

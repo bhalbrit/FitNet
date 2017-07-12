@@ -4,10 +4,26 @@
     android:layout_height="match_parent"
     tools:context="de.edvschule_plattling.fitnet.TrainingsplanTrainierenFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/trainingsplan_uebung_bez"
+        style="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:padding="16dp"
+        android:textIsSelectable="true"
+        tools:context="de.edvschule_plattling.fitnet.TrainingsplanTrainierenFragment" />
 
-</FrameLayout>
+    <Button
+        android:id="@+id/buttonbeenden"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="100px"
+        android:text="Training beenden"
+        android:visibility="invisible"/>
+
+    </FrameLayout>
+
+
+
