@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,6 @@ public class Trainingsplaene {
             }
         }
         return null;
-
     }
 
 
@@ -70,7 +70,22 @@ public class Trainingsplaene {
                         uebIds.add(uebId);
 
                     }
-                    Trainingsplan zw = new Trainingsplan(id, bez, uebIds);
+
+                    List<Trainingseinheit> einheiten=new ArrayList<>();
+                    JSONArray jsonArrayTrainingseinheiten = new JSONArray(jsonobject.getString("trainingseinheiten"));
+                    for (int b = 0; b < jsonArrayTrainingseinheiten.length(); b++) {
+                        JSONObject jsonEinheit = jsonArrayTrainingseinheiten.getJSONObject(b);
+                        int uebId = jsonEinheit.getInt("id");
+                        Date trainingstag =new Date(jsonEinheit.getLong("tag"));
+
+                        einheiten.add(new Trainingseinheit(uebId,trainingstag));
+                    }
+
+
+                    Trainingsplan zw = new Trainingsplan(id, bez, uebIds,einheiten);
+                    //Testdaten
+                  //  zw.addTrainingseinheit(new Trainingseinheit(10,new Date(2010,10,12)));
+                   zw.addTrainingseinheit(new Trainingseinheit(10,new Date(2015-1900,10,12)));
                     putInHashMap(zw);
 
                 }
@@ -101,9 +116,12 @@ public class Trainingsplaene {
 
     }
 
-    public static void weggschreiben(Map<String, Uebung> curmap, Map<String, Trainingsplan> curmapPlaene, SharedPreferences.Editor keyValuesEditor, Context context) {
-        weggschreibenUebungen(curmap, keyValuesEditor, context);
-        weggschreibenTrainingsplaene(curmapPlaene, keyValuesEditor, context);
+
+
+    public static void weggschreiben(Map<String,Uebung> curmap,Map<String,Trainingsplan> curmapPlaene, SharedPreferences.Editor keyValuesEditor, Context context){
+        weggschreibenUebungen(curmap,keyValuesEditor,context);
+        weggschreibenTrainingsplaene(curmapPlaene,keyValuesEditor,context);
+
     }
 
     private static void weggschreibenUebungen(Map<String, Uebung> curmap, SharedPreferences.Editor keyValuesEditor, Context context) {
@@ -144,7 +162,7 @@ public class Trainingsplaene {
             for (Map.Entry<String, Trainingsplan> entry : curmap.entrySet()) {
                 JSONArray jsonArrUebId = new JSONArray();
                 Trainingsplan value = entry.getValue();
-
+                JSONArray jsonArrTrainingseinheiten=new JSONArray();
 
                 for (String uebId : value.getUebungen_keys()) {
                     JSONObject c = new JSONObject();
@@ -152,10 +170,18 @@ public class Trainingsplaene {
                     jsonArrUebId.put(c);
                 }
 
+                for(Trainingseinheit einheit:value.getTrainingseinheiten()){
+                    JSONObject c = new JSONObject();
+                    c.put("id",einheit.getId());
+                    c.put("tag",einheit.getTrainingstag().getTime());
+                    jsonArrTrainingseinheiten.put(c);
+                }
+
                 JSONObject o = new JSONObject();
-                o.put("bezeichnung", value.getBezeichnung());
-                o.put("id", value.getId());
-                o.put("uebungen", jsonArrUebId.toString());
+                o.put("bezeichnung",value.getBezeichnung());
+                o.put("id",value.getId());
+                o.put("uebungen",jsonArrUebId.toString());
+                o.put("trainingseinheiten",jsonArrTrainingseinheiten.toString());
                 jsonArrTrainp.put(o);
 
             }
