@@ -3,6 +3,7 @@ package de.edvschule_plattling.fitnet;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -28,6 +29,9 @@ import de.edvschule_plattling.fitnet.klassen.Uebung;
 import java.util.ArrayList;
 import java.util.List;
 
+import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.TRAININGSPLAN_MAP;
+import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.UEBUNG_MAP;
+
 /**
  * An activity representing a list of Trainingsplaene. This activity
  * has different presentations for handset and tablet-size devices. On
@@ -47,6 +51,8 @@ public class UebungListActivity extends AppCompatActivity {
     private Trainingsplan trainingsplan;
     private UebungListActivity.SimpleItemRecyclerViewAdapter.ViewHolder Vholder;
 
+    private SharedPreferences keyValues;
+    private SharedPreferences.Editor keyValuesEditor;
 
     @Override
     protected void onResume() {
@@ -96,19 +102,14 @@ public class UebungListActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
 
-        //akt: test
-        // View recyclerView = findViewById(R.id.uebung_list);
-        // assert recyclerView != null;
-        // setupRecyclerView((RecyclerView) recyclerView);
 
 
         if (findViewById(R.id.uebung_detail_container) != null) {
-            // The detail container view will be present only in the
-            // large-screen layouts (res/values-w900dp).
-            // If this view is present, then the
-            // activity should be in two-pane mode.
+
             mTwoPane = true;
         }
+        keyValues =getSharedPreferences("SharedUebungen", Context.MODE_PRIVATE);
+        keyValuesEditor = keyValues.edit();
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
@@ -127,8 +128,8 @@ public class UebungListActivity extends AppCompatActivity {
 
             //Übungen filtern und schauen, welche Übungen zu diesem Traingsplan gehören
             for (String item : items) {
-                if (Trainingsplaene.UEBUNG_MAP.containsKey(item)) {
-                    mValues.add(Trainingsplaene.UEBUNG_MAP.get(item));
+                if (UEBUNG_MAP.containsKey(item)) {
+                    mValues.add(UEBUNG_MAP.get(item));
                 }
 
             }
@@ -244,7 +245,7 @@ public class UebungListActivity extends AppCompatActivity {
         Uebung uebung = Vholder.mItem;
         trainingsplan.getUebungen_keys().remove(String.valueOf(uebung.getId()));
         //Trainingsplaene.UEBUNG_MAP.remove(uebung);
-        Trainingsplaene.weggschreiben(UEBUNG_MAP,TRAININGSPLAN_MAP,keyValuesEditor,getApplicationContext());
+        Trainingsplaene.weggschreiben(UEBUNG_MAP, TRAININGSPLAN_MAP,keyValuesEditor,getApplicationContext());
         Toast.makeText(this, "Übung '" +uebung.getBezeichnung() + "' gelöscht", Toast.LENGTH_SHORT).show();
         onResume();
 

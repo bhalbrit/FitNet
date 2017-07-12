@@ -7,21 +7,21 @@ import java.util.Date;
  */
 
 public class Trainingseinheit {
-    private int id;
+   // private int id;
 
     private Date trainingstag;
 
     //evtl später noch Map um Gewichte ect. pro Übung zu speichern
 
 
-    public Trainingseinheit(int id, Date trainingstag) {
-        this.id = id;
+    public Trainingseinheit( Date trainingstag) {
+       // this.id = id;
         this.trainingstag = trainingstag;
     }
 
-    public int getId() {
-        return id;
-    }
+   // public int getId() {
+     //   return id;
+   // }
 
 
     public Date getTrainingstag() {

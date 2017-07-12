@@ -75,17 +75,17 @@ public class Trainingsplaene {
                     JSONArray jsonArrayTrainingseinheiten = new JSONArray(jsonobject.getString("trainingseinheiten"));
                     for (int b = 0; b < jsonArrayTrainingseinheiten.length(); b++) {
                         JSONObject jsonEinheit = jsonArrayTrainingseinheiten.getJSONObject(b);
-                        int uebId = jsonEinheit.getInt("id");
+                       // int uebId = jsonEinheit.getInt("id");
                         Date trainingstag =new Date(jsonEinheit.getLong("tag"));
 
-                        einheiten.add(new Trainingseinheit(uebId,trainingstag));
+                        einheiten.add(new Trainingseinheit(trainingstag));
                     }
 
 
                     Trainingsplan zw = new Trainingsplan(id, bez, uebIds,einheiten);
                     //Testdaten
                   //  zw.addTrainingseinheit(new Trainingseinheit(10,new Date(2010,10,12)));
-                   zw.addTrainingseinheit(new Trainingseinheit(10,new Date(2015-1900,10,12)));
+                  /// zw.addTrainingseinheit(new Trainingseinheit(10,new Date(2015-1900,10,12)));
                     putInHashMap(zw);
 
                 }
@@ -172,7 +172,7 @@ public class Trainingsplaene {
 
                 for(Trainingseinheit einheit:value.getTrainingseinheiten()){
                     JSONObject c = new JSONObject();
-                    c.put("id",einheit.getId());
+                   // c.put("id",einheit.getId());
                     c.put("tag",einheit.getTrainingstag().getTime());
                     jsonArrTrainingseinheiten.put(c);
                 }

@@ -1,18 +1,23 @@
 package de.edvschule_plattling.fitnet;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import de.edvschule_plattling.fitnet.klassen.Trainingseinheit;
 import de.edvschule_plattling.fitnet.klassen.Trainingsplaene;
 import de.edvschule_plattling.fitnet.klassen.Trainingsplan;
 import de.edvschule_plattling.fitnet.klassen.Uebung;
 
+import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.TRAININGSPLAN_MAP;
 import static de.edvschule_plattling.fitnet.klassen.Trainingsplaene.UEBUNG_MAP;
 
 public class TraingsplanTrainieren extends AppCompatActivity {
@@ -20,6 +25,9 @@ public class TraingsplanTrainieren extends AppCompatActivity {
     private Trainingsplan mItem;
     private int zaehler = 0;
     private List<Uebung> uebungen = new LinkedList<Uebung>();
+
+    private SharedPreferences keyValues;
+    private SharedPreferences.Editor keyValuesEditor;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -72,6 +80,16 @@ public class TraingsplanTrainieren extends AppCompatActivity {
 
     };
 
+
+
+
+    public void datumWegschreiben(){
+        keyValues = getSharedPreferences("SharedUebungen", Context.MODE_PRIVATE);
+        keyValuesEditor = keyValues.edit();
+        mItem.addTrainingseinheit(new Trainingseinheit(new Date()));
+        Trainingsplaene.weggschreiben(UEBUNG_MAP, TRAININGSPLAN_MAP, keyValuesEditor, getApplicationContext());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,4 +123,7 @@ public class TraingsplanTrainieren extends AppCompatActivity {
                 .commit();
     }
 
+
 }
+
+

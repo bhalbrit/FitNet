@@ -72,8 +72,7 @@ public class TrainingsplanTrainierenFragment extends Fragment {
             button.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
 
-                    //TODO datum
-
+                    ((TraingsplanTrainieren)getActivity()).datumWegschreiben();
                     activity.finish();
 
                 }
